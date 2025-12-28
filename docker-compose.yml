@@ -9,8 +9,8 @@ services:
       - ${OLLAMA_DATA_FOLDER:-./ollama_data}:/root/.ollama
     devices:
       - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
     environment:
-      - OLLAMA_VULKAN=1
       - HSA_OVERRIDE_GFX_VERSION=8.0.3
     networks:
       - net
