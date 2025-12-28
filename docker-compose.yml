@@ -12,6 +12,8 @@ services:
       - /dev/kfd:/dev/kfd
     environment:
       - HSA_OVERRIDE_GFX_VERSION=8.0.3
+      - OLLAMA_LLM_LIBRARY=rocm
+      - OLLAMA_DEBUG=1
     networks:
       - net
 
