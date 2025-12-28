@@ -11,13 +11,7 @@ services:
       - /dev/dri:/dev/dri
     environment:
       - OLLAMA_VULKAN=1
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: amd
-              count: all
-              capabilities: [gpu]
+      - HSA_OVERRIDE_GFX_VERSION=8.0.3
     networks:
       - net
 
