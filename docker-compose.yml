@@ -3,13 +3,13 @@ services:
     image: ollama/ollama
     container_name: ollama
     restart: always
-    environment:
-      OLLAMA_VULKAN: 1
+    group_add:
+      - video
+      - render
     volumes:
       - ${OLLAMA_DATA_FOLDER:-./ollama_data}:/root/.ollama
     devices:
       - /dev/dri:/dev/dri
-      - /dev/kfd:/dev/kfd
     # Instalar o pacote 'nvidia-cg-toolkit' no host e descomentar:
     # deploy:
     #   resources:
