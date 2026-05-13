@@ -7,6 +7,9 @@ services:
       - ${OLLAMA_DATA_FOLDER:-./ollama_data}:/root/.ollama
     devices:
       - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
+    environment:
+      - OLLAMA_VULKAN=1
     group_add:
       - video
       - "988"
