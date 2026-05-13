@@ -9,7 +9,7 @@ services:
       - /dev/dri:/dev/dri
     group_add:
       - video
-      - render
+      - "988"
     # Instalar o pacote 'nvidia-cg-toolkit' no host e descomentar:
     # deploy:
     #   resources:
