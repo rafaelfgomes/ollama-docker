@@ -7,12 +7,12 @@ services:
       - ${OLLAMA_DATA_FOLDER:-./ollama_data}:/root/.ollama
     devices:
       - /dev/dri:/dev/dri
-      - /dev/kfd:/dev/kfd
     environment:
       - OLLAMA_VULKAN=1
+      - OLLAMA_NUM_GPU=999
     group_add:
       - video
-      - "988"
+      - ${RENDER_GROUP_ID}
     # Instalar o pacote 'nvidia-cg-toolkit' no host e descomentar:
     # deploy:
     #   resources:
@@ -24,21 +24,6 @@ services:
     networks:
       external:
         ipv4_address: ${OLLAMA_IP}
-
-  open-webui:
-    image: ghcr.io/open-webui/open-webui:main
-    container_name: open-webui
-    restart: always
-    volumes:
-      - ${OPEN_WEBUI_DATA_FOLDER:-./open-webui_data}:/app/backend/data
-    environment:
-      - OLLAMA_BASE_URL=http://${OLLAMA_IP}:11434
-      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
-    depends_on:
-      - ollama
-    networks:
-      external:
-        ipv4_address: ${OPEN_WEBUI_IP}
 
 networks:
   external:
